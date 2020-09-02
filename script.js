@@ -19,6 +19,25 @@ function generatePassword() {
     isNaN(lengthOfPassword)
   ) {
     alert("Password length must be a number between 8 and 128.");
+    fail;
+  }
+
+  var specialCharacters = confirm(
+    "Click OK to confirm including special characters."
+  );
+  var numbers = confirm("Click OK to confirm including number.");
+  var lowerCase = confirm("Click OK to confirm including lower case.");
+  var upperCase = confirm("Click OK to confirm including  upper case.");
+  if (
+    specialCharacters == "" &&
+    numbers == "" &&
+    lowerCase == "" &&
+    upperCase == ""
+  ) {
+    alert(
+      "Password must have a selection from at least one of the following categroies: special character, number, lower case or upper case ."
+    );
+    fail;
   }
 }
 
