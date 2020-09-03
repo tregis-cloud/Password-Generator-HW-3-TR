@@ -22,9 +22,10 @@ function generatePassword() {
   var numberString;
   var lowerCaseString;
   var upperCaseString;
-  var combinedString;
+  var combinedString = "";
 
-  var generatedPassword;
+  var generatedPassword = "";
+  var guaranteedCharacters = "";
 
   passwordLength = prompt(
     "Please enter a number between 8 and 128 for the desired length of your password."
@@ -42,28 +43,45 @@ function generatePassword() {
   numbers = confirm("Click OK to confirm including numbers characters.");
   lowerCase = confirm("Click OK to confirm including lower case characters.");
   upperCase = confirm("Click OK to confirm including upper case characters.");
-  if (
-    specialCharacters == "" &&
-    numbers == "" &&
-    lowerCase == "" &&
-    upperCase == ""
-  ) {
+  if (!specialCharacters && !numbers && !lowerCase && !upperCase) {
     alert(
       "Password must have a selection from at least one of the following categroies: special characters, numbers, lowercase letters or uppercase letters. Please start again."
     );
     return false;
   }
+
   specialCharacterString = "'~`!@#$%^&*()_+-={}[]:;'<>?,./|\\";
   numberString = "0123456789";
   lowerCaseString = "abcdefghijklmnopqrstuvwxyz";
   upperCaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  combinedString = specialCharacterString + numberString;
 
-  for (var i = 0; i <= passwordLength; i++) {
+  if (specialCharacters) {
+    combinedString += specialCharacterString;
+    var index = Math.floor(Math.random() * specialCharacterString.length + 1);
+    guaranteedCharacters += specialCharacterString[index];
+  }
+  if (numbers) {
+    combinedString += numberString;
+    var index = Math.floor(Math.random() * numberString.length + 1);
+    guaranteedCharacters += numberString[index];
+  }
+  if (lowerCase) {
+    combinedString += lowerCaseString;
+    var index = Math.floor(Math.random() * lowerCaseString.length + 1);
+    guaranteedCharacters += lowerCaseString[index];
+  }
+  if (upperCase) {
+    combinedString += upperCaseString;
+    var index = Math.floor(Math.random() * upperCaseString.length + 1);
+    guaranteedCharacters += upperCaseString[index];
+  }
+
+  var remainingLength = passwordLength - guaranteedCharacters.length;
+  for (var i = 0; i <= remainingLength; i++) {
     var index = Math.floor(Math.random() * combinedString.length + 1);
     generatedPassword += combinedString[index];
   }
-  return generatedPassword;
+  return generatedPassword + guaranteedCharacters;
 }
 
 // Add event listener to generate button
