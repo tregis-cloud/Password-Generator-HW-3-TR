@@ -2,8 +2,8 @@ Project Title: Password-Generator-HW-3-TR
 Description:This project generates a random password base on selecting atleast one of four character types and the length of the password.
 Installation:NA
 
-![Home](./images/home.png)
-![Password](./images/password.png)
+![](./images/home.png)
+![](./images/password.png)
 
 Usage:
 The user must select a password length between 8 and 128. If the user does not, an error message will be presented and the program with terminate. Similarly, at least one of the four character types must be chosen, or the user will get an error message and the program will terminate. At the end of the selection of valid options, a random password will be generated.
