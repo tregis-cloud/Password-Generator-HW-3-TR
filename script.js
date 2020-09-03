@@ -17,6 +17,11 @@ function generatePassword() {
   var lowerCase;
   var upperCase;
   var generatedPassword;
+  var numberString;
+  var lowerCaseString;
+  var upperCaseString;
+  var specialCharacterString;
+  var combinedString;
 
   passwordLength = prompt(
     "Please enter a number between 8 and 128 for the desired length of your password."
@@ -45,10 +50,18 @@ function generatePassword() {
     );
     return false;
   }
-  var numberChar = "0123456789";
+  specialCharacterString = "'~`!@#$%^&*()_+-={}[]:;'<>?,./|\\";
+  numberString = "0123456789";
+  lowerCaseString = "abcdefghijklmnopqrstuvwxyz";
+  upperCaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  if (specialCharacters == "true") {
+    combinedString = specialCharacterString;
+  }
+
   for (var i = 0; i <= passwordLength; i++) {
-    var char = Math.floor(Math.random() * numberChar.length + 1);
-    generatedPassword += numberChar.charAt(char);
+    var char = Math.floor(Math.random() * combinedString.length + 1);
+    generatedPassword += combinedString.charAt(char);
   }
   return generatedPassword;
 }
