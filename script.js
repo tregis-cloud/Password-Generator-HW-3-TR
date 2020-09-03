@@ -32,7 +32,7 @@ function generatePassword() {
   );
   if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     alert(
-      "Password length must be a number between 8 and 128. Please start again."
+      "Password length must be a number between 8 and 128. Please try again."
     );
     return "Please try again.";
   }
@@ -45,7 +45,7 @@ function generatePassword() {
   upperCase = confirm("Click OK to confirm including upper case characters.");
   if (!specialCharacters && !numbers && !lowerCase && !upperCase) {
     alert(
-      "Password must have a selection from at least one of the following categroies: special characters, numbers, lowercase letters or uppercase letters. Please start again."
+      "Password must have a selection from at least one of the following categroies: special characters, numbers, lowercase letters or uppercase letters. Please try again."
     );
     return "Please try again.";
   }
