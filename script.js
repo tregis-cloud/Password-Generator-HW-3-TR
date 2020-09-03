@@ -34,7 +34,7 @@ function generatePassword() {
     alert(
       "Password length must be a number between 8 and 128. Please start again."
     );
-    return false;
+    return "Please try again.";
   }
 
   specialCharacters = confirm(
@@ -47,7 +47,7 @@ function generatePassword() {
     alert(
       "Password must have a selection from at least one of the following categroies: special characters, numbers, lowercase letters or uppercase letters. Please start again."
     );
-    return false;
+    return "Please try again.";
   }
 
   specialCharacterString = "'~`!@#$%^&*()_+-={}[]:;'<>?,./|\\";
@@ -57,30 +57,31 @@ function generatePassword() {
 
   if (specialCharacters) {
     combinedString += specialCharacterString;
-    var index = Math.floor(Math.random() * specialCharacterString.length + 1);
+    var index = Math.floor(Math.random() * specialCharacterString.length);
     guaranteedCharacters += specialCharacterString[index];
   }
   if (numbers) {
     combinedString += numberString;
-    var index = Math.floor(Math.random() * numberString.length + 1);
+    var index = Math.floor(Math.random() * numberString.length);
     guaranteedCharacters += numberString[index];
   }
   if (lowerCase) {
     combinedString += lowerCaseString;
-    var index = Math.floor(Math.random() * lowerCaseString.length + 1);
+    var index = Math.floor(Math.random() * lowerCaseString.length);
     guaranteedCharacters += lowerCaseString[index];
   }
   if (upperCase) {
     combinedString += upperCaseString;
-    var index = Math.floor(Math.random() * upperCaseString.length + 1);
+    var index = Math.floor(Math.random() * upperCaseString.length);
     guaranteedCharacters += upperCaseString[index];
   }
 
   var remainingLength = passwordLength - guaranteedCharacters.length;
   for (var i = 0; i < remainingLength; i++) {
-    var index = Math.floor(Math.random() * combinedString.length + 1);
+    var index = Math.floor(Math.random() * combinedString.length);
     generatedPassword += combinedString[index];
   }
+
   return generatedPassword + guaranteedCharacters;
 }
 
