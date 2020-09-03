@@ -12,16 +12,19 @@ function writePassword() {
 //All my code goes here
 function generatePassword() {
   var passwordLength;
+
   var specialCharacters;
   var numbers;
   var lowerCase;
   var upperCase;
-  var generatedPassword;
+
+  var specialCharacterString;
   var numberString;
   var lowerCaseString;
   var upperCaseString;
-  var specialCharacterString;
   var combinedString;
+
+  var generatedPassword;
 
   passwordLength = prompt(
     "Please enter a number between 8 and 128 for the desired length of your password."
@@ -54,14 +57,11 @@ function generatePassword() {
   numberString = "0123456789";
   lowerCaseString = "abcdefghijklmnopqrstuvwxyz";
   upperCaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-  if (specialCharacters == "true") {
-    combinedString = specialCharacterString;
-  }
+  combinedString = specialCharacterString + numberString;
 
   for (var i = 0; i <= passwordLength; i++) {
-    var char = Math.floor(Math.random() * combinedString.length + 1);
-    generatedPassword += combinedString.charAt(char);
+    var index = Math.floor(Math.random() * combinedString.length + 1);
+    generatedPassword += combinedString[index];
   }
   return generatedPassword;
 }
