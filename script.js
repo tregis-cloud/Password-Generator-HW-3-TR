@@ -77,7 +77,7 @@ function generatePassword() {
   }
 
   var remainingLength = passwordLength - guaranteedCharacters.length;
-  for (var i = 0; i <= remainingLength; i++) {
+  for (var i = 0; i < remainingLength; i++) {
     var index = Math.floor(Math.random() * combinedString.length + 1);
     generatedPassword += combinedString[index];
   }
