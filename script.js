@@ -8,26 +8,32 @@ function writePassword() {
 
   passwordText.value = password;
 }
+
 //All my code goes here
 function generatePassword() {
-  var lengthOfPassword = prompt(
-    "How many characters would you like your password to contain? Pease choose a length between 8 and 128."
+  var passwordLength;
+  var specialCharacters;
+  var numbers;
+  var lowerCase;
+  var upperCase;
+  var generatedPassword;
+
+  passwordLength = prompt(
+    "Please enter a number between 8 and 128 for the desired length of your password."
   );
-  if (
-    lengthOfPassword < 8 ||
-    lengthOfPassword > 128 ||
-    isNaN(lengthOfPassword)
-  ) {
-    alert("Password length must be a number between 8 and 128.");
-    fail;
+  if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
+    alert(
+      "Password length must be a number between 8 and 128. Please start again."
+    );
+    return false;
   }
 
-  var specialCharacters = confirm(
+  specialCharacters = confirm(
     "Click OK to confirm including special characters."
   );
-  var numbers = confirm("Click OK to confirm including number.");
-  var lowerCase = confirm("Click OK to confirm including lower case.");
-  var upperCase = confirm("Click OK to confirm including  upper case.");
+  numbers = confirm("Click OK to confirm including numbers characters.");
+  lowerCase = confirm("Click OK to confirm including lower case characters.");
+  upperCase = confirm("Click OK to confirm including upper case characters.");
   if (
     specialCharacters == "" &&
     numbers == "" &&
@@ -35,10 +41,16 @@ function generatePassword() {
     upperCase == ""
   ) {
     alert(
-      "Password must have a selection from at least one of the following categroies: special character, number, lower case or upper case ."
+      "Password must have a selection from at least one of the following categroies: special characters, numbers, lowercase letters or uppercase letters. Please start again."
     );
-    fail;
+    return false;
   }
+  var numberChar = "0123456789";
+  for (var i = 0; i <= passwordLength; i++) {
+    var char = Math.floor(Math.random() * numberChar.length + 1);
+    generatedPassword += numberChar.charAt(char);
+  }
+  return generatedPassword;
 }
 
 // Add event listener to generate button
